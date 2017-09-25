@@ -38,7 +38,7 @@ public class CustomerController {
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
 		NoticeView noticeView = noticeDao.get(aaid);
 
-		return aaid + "번째 공지사항" + noticeView.getTitle();
+		return aaid + "번째 공지사항" +""+ noticeView.getTitle();
 	}
 
 }
