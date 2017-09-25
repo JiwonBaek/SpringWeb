@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+		<mapper namespace="com.newlecture.webapp.dao.NoticeDao">
+		
+		<!-- 사용 할 함수를 id에 입력 어떤 쿼리문을 사용할 지에 따라 select, delete, update등으로 id를 만든다. -->
+		<!-- resultType은 반환 값을 저장할 값 타입이나 공간 설정 -->
+		  <select id="get" resultType="com.newlecture.webapp.entity.NoticeView"> 
+		    select * from Notice where id=#{id}
+		  </select>
+		</mapper> 
