@@ -7,11 +7,7 @@ import com.newlecture.webapp.entity.NoticeView;
 
 public class MyBatisNoticeDao implements NoticeDao {
 
-	@Override
-	public List<NoticeView> getList(int page, String query) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public int getCount() {
@@ -29,6 +25,12 @@ public class MyBatisNoticeDao implements NoticeDao {
 	public int update(String id, String title, String content) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<NoticeView> getList(int page, String filed, String query) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

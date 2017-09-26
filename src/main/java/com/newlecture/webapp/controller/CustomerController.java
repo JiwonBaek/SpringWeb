@@ -1,6 +1,6 @@
 package com.newlecture.webapp.controller;
 
-import javax.sql.DataSource;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +24,16 @@ public class CustomerController {
 	@RequestMapping("notice")
 	@ResponseBody /* 뷰를 찾지 않고 함수를 출력 */
 	public String notice(@RequestParam(value = "p", defaultValue = "1") Integer p,
+			@RequestParam(value = "f", defaultValue = "title") String f,
 			@RequestParam(value = "q", defaultValue = "") String q) {
 		/* @RequestParam(value="p", defaultValue="1") 기본값으로 설정하여 넘겨준다. */
 
-		String output = String.format("p:%s, q:%s", p, q);
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		List<NoticeView> list = noticeDao.getList(p,f,q);
+		
+		String output = String.format("p:%s, q:%s\n\n", p, q);
+		output += String.format("title : %s\n", list.get(0).getTitle());
+		
 		return output;
 	}
 
@@ -37,6 +43,7 @@ public class CustomerController {
 
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
 		NoticeView noticeView = noticeDao.get(aaid);
+		
 
 		return aaid + "번째 공지사항" +""+ noticeView.getTitle();
 	}

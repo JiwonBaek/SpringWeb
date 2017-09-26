@@ -11,4 +11,10 @@
 		  <select id="get" resultType="com.newlecture.webapp.entity.NoticeView"> 
 		    select * from Notice where id=#{id}
 		  </select>
+		  
+		<!--   mybatis는 하나의 인자만 값을 넘겨 받을 수 있다.  -->
+		  <select id="getList" resultType="com.newlecture.webapp.entity.NoticeView"> 
+		      SELECT *FROM NoticeView WHERE ${param2} like '%${param3}%' order by regDate desc limit ${(page-1)*10}, 10
+		  </select>
+		  
 		</mapper> 

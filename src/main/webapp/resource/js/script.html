@@ -278,10 +278,24 @@ alert(data.title); */
 		var addImgNodeButton = document.querySelector("#add-img-node-button");
 		var removeNodeButton = document.querySelector("#remove-node-button");
 		var container = document.querySelector("#node-container");
+		
+		var remove=function(e){
+			container.removeChild(e.target);
+		}
+		
+		var index=0;
 
 		addTextNodeButton.onclick = function() {
 			//1.텍스트 노드 생성
-			var txt = document.createTextNode("안녕하세요");
+			
+			var span =document.createElement("span");
+			
+			var txt = document.createTextNode("안녕하세요" +index++);
+			
+			span.appendChild(txt);
+			container.appendChild(span);
+			
+			span.onclick = remove;
 
 
 
@@ -289,7 +303,7 @@ alert(data.title); */
 
 
 			//3.부모에 자식을 추가
-			container.appendChild(txt);
+			/* container.appendChild(txt); */
 
 		};
 
@@ -305,11 +319,18 @@ alert(data.title); */
 			//3.부모에 자식을 추가
 			/* img.src = "http://poli.hyundai.com/images/theater/img_poli_03.jpg";
 			container.appendChild(img); */
-				container.innerHTML +='<img src="http://poli.hyundai.com/images/theater/img_poli_03.jpg">'; 
+				container.innerHTML +='<img onclick=remove(); src="http://poli.hyundai.com/images/theater/img_poli_03.jpg">'; 
 
 		};
 
-		removeNodeButton.onclick = function() {};
+		removeNodeButton.onclick = function() {
+			//1. 내정된 노드 지우기
+			 container.removeChild(container.lastChild);//막내 노드 지우기
+			
+			//2. 선택된 노드 지우기
+			
+			
+		};
 	};
 </script>
 
