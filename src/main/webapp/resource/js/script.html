@@ -332,10 +332,90 @@ alert(data.title); */
 			
 		};
 	};
+	
+	/*---노드 바꾸기---------*/
+	window.addEventListner("load" = function() {
+		var swapNodeButton = document.querySelector("#swap-node-button");
+		 var container = document.querySelector("#node-swap-container"); 
+
+		swapNodeButton.onclick = function() {
+			
+			/* var node1= container.querySelector("img:first-child"); */
+			
+			var nodes= container.getElementsByTagName("img");
+			
+			var node1=nodes[0];
+			var node3=nodes[2];
+			/* var nodeNext = node1.nextElementSibiling; */
+			
+			var oldNode = container.replaceChild(node1/*new node*/,node3);
+			//replaceChild: 기존에 있는 것을 빼서 새로운 것으로 넣는 것 
+			container.insertBefore(oldNode,nodes[0]); //nodeNext를 사용하지 않을 때
+			 
+			/* container.insertBefore(oldNode,nodeNext); */
+		};
+	};
+	
+
+	/*---노드 바꾸기2---------*/
+	window.onload = function() {
+		var moveUpButton = document.querySelector("#move-up-button");
+		var container = document.querySelector("#move-up-container");
+		
+		var tbody = container.querySelector("tbody");
+
+		tbody.onclick = function(e) {
+			
+			e.target.parentNode.style.background = "pink"; //클릭한 tr 배경색 생성
+			//e.target.style.background = "pink"; 클릭한 td만 핑크색 배경 생성
+		};
+
+		// var trs = container.querySelectorAll("tbody tr"); container.querySelector로 했을 때는 첫 번째 tr만 바뀐다.
+		/* 	 for(var i=0;i<trs.length;i++)
+			 trs[i].onclick = function(e) {
+					e.target.style.background="pink";//클릭한 td만 핑크색 배경 생성
+				}; */
+
+		moveUpButton.onclick = function() {
+
+		};
+	};
 </script>
 
 </head>
 <body>
+
+
+	<!-- 노드 바꾸기 예제2 ------------------>
+	<input id="move-up-button" type="button" value="위로 옮기기" />
+	<div id="move-up-container">
+		<table border="1">
+			<thead>
+				<tr>
+					<td>코드</td>
+					<td>제목</td>
+				</tr>
+			</thead>
+			<tr>
+				<td>1</td>
+				<td>자바 스크립트</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>spring</td>
+			</tr>
+		</table>
+
+	</div>
+	<hr />
+
+	<!-- 노드 바꾸기 예제 ------------------>
+	<input id="swap-node-button" type="button" value="노드 바꾸기" />
+	<div id="node-swap-container">
+		<img src="../images/answeris.png"><img src="../images/w3c.png"><img src="../images/microsoft.png">
+	</div>
+	<hr />
+
 
 	<!-- 텍스트 노드 추가 예제 ------------------>
 	<input id="add-text-node-button" type="button" value="텍스트 노드 추가" />

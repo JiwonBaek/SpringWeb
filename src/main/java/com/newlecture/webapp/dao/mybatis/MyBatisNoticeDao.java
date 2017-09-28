@@ -2,11 +2,16 @@ package com.newlecture.webapp.dao.mybatis;
 
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.newlecture.webapp.dao.NoticeDao;
 import com.newlecture.webapp.entity.NoticeView;
 
 public class MyBatisNoticeDao implements NoticeDao {
 
+	@Autowired
+	private SqlSessionTemplate sqlSession;
 	
 
 	@Override
@@ -17,8 +22,10 @@ public class MyBatisNoticeDao implements NoticeDao {
 
 	@Override
 	public NoticeView get(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		NoticeView noticeView = noticeDao.get(id);
+		
+		return noticeView;
 	}
 
 	@Override
@@ -29,8 +36,12 @@ public class MyBatisNoticeDao implements NoticeDao {
 
 	@Override
 	public List<NoticeView> getList(int page, String filed, String query) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		List<NoticeView> list = noticeDao.getList(page, filed, query);
+		
+		return list;
+	
 	}
 
 }

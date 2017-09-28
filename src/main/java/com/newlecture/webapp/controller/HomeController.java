@@ -12,7 +12,8 @@ public class HomeController {
 	/*@ResponseBody*/
 	public String index() {
 		
-		return "index";///WEB-INF/views/index.jsp 반환 -->webservlet에 설정
+		//return "index"; WEB-INF/views/index.jsp 반환 -->webservlet에 설정
+		return "home.index";
 	}
 
 }

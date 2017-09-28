@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,17 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	notice page
-	<br />
-
-
-	<c:forEach var="n" items="${list}">
-           
-              
-                ${ n.title }<br />
-
-	</c:forEach>
-
-
+	
+		<tiles:insertAttribute name="header" />
+		<div>
+			<tiles:insertAttribute name="main" />
+		</div>
+		<tiles:insertAttribute name="footer" />
+		
 </body>
 </html>
