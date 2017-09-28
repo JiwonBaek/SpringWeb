@@ -17,4 +17,10 @@
 		      SELECT *FROM NoticeView WHERE ${param2} like '%${param3}%' order by regDate desc limit ${(page-1)*10}, 10
 		  </select>
 		  
+		    <select id="getPrev" resultType="com.newlecture.webapp.entity.NoticeView"> 
+		    SELECT * FROM Notice WHERE id=#{id} UNION ALL (
+			SELECT * FROM Notice WHERE <![CDATA[id > #{id}]]>  ORDER BY id ASC LIMIT 2)
+			ORDER BY id DESC; 
+		  </select>
+		  
 		</mapper> 

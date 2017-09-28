@@ -14,4 +14,6 @@ int getCount();
 /*@Select("select * from Notice where id=#{id}") 이렇게 쿼리문 작성 가능*/
 NoticeView get(String id);
 int update(String id, String title, String content);
+NoticeView getPrev(String id);
+NoticeView getNext(String id);
 }
