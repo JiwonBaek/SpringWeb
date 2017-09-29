@@ -28,7 +28,7 @@
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td>${n.writer}</td>
+							<td>${n.writerId}</td>
 							<th>조회수</th>
 							<td>${n.hit}</td>
 						</tr>

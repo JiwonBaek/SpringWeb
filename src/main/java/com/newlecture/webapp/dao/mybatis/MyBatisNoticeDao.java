@@ -23,9 +23,9 @@ public class MyBatisNoticeDao implements NoticeDao {
 	@Override
 	public NoticeView get(String id) {
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
-		NoticeView noticeView = noticeDao.get(id);
+		NoticeView result = noticeDao.get(id);
 		
-		return noticeView;
+		return result;
 	}
 
 	@Override
@@ -38,23 +38,26 @@ public class MyBatisNoticeDao implements NoticeDao {
 	public List<NoticeView> getList(int page, String filed, String query) {
 	
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
-		List<NoticeView> list = noticeDao.getList(page, filed, query);
+		List<NoticeView> result = noticeDao.getList(page, filed, query);
 		
-		return list;
+		return result;
 	
 	}
 
 	@Override
 	public NoticeView getPrev(String id) {
+		
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
-		NoticeView noticeView = noticeDao.get(id);
-		return noticeView;
+		NoticeView result = noticeDao.getPrev(id);
+		return result;
 	}
 
 	@Override
 	public NoticeView getNext(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		NoticeView result = noticeDao.getNext(id);
+		return result;
 	}
 
 }
