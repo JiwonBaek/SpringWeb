@@ -16,26 +16,26 @@
 <link href="${ctx}/resource/js/lib/notepubs/web-editor/editor.css" type="text/css" rel="stylesheet" /> --%>
 </head>
 <body>
-	<!-- header 부분 -->
-	<tiles:insertAttribute name="header" />
-	<!-- --------------------------- <visual> --------------------------------------- -->
-	<!-- visual 부분 -->
-	<tiles:insertAttribute name="visual" />
-	<!-- --------------------------- <body> --------------------------------------- -->
-	<div id="body">
-		<div class="content-container clearfix">
+   <!-- header 부분 -->
+   <tiles:insertAttribute name="header" />
+   <!-- --------------------------- <visual> --------------------------------------- -->
+   <!-- visual 부분 -->
+   <%-- <tiles:insertAttribute name="visual" /> --%>
+   <!-- --------------------------- <body> --------------------------------------- -->
+   <div id="body">
+      <div class="content-container clearfix">
 
-			<!-- --------------------------- aside --------------------------------------- -->
-			<!-- aside 부분 -->
-			<tiles:insertAttribute name="aside" />
-			<!-- --------------------------- main --------------------------------------- -->
-			
-			<!-- content 부분 -->
-			<tiles:insertAttribute name="main" />
-			
-		</div>
-	</div>
-	<!-- ------------------- <footer> --------------------------------------- -->
-	<tiles:insertAttribute name="footer" />
+         <!-- --------------------------- aside --------------------------------------- -->
+         <!-- aside 부분 -->
+         <tiles:insertAttribute name="aside" />
+         <!-- --------------------------- main --------------------------------------- -->
+         
+         <!-- content 부분 -->
+         <tiles:insertAttribute name="main" />
+         
+      </div>
+   </div>
+   <!-- ------------------- <footer> --------------------------------------- -->
+   <tiles:insertAttribute name="footer" />
 </body>
 </html>
