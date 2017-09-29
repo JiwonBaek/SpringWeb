@@ -49,7 +49,8 @@ public class CustomerController {
 		return "customer.notice.list";
 	}
 
-	@RequestMapping("notice/{id}") /* 뷰를 찾지 않고 함수를 출력 */
+	@RequestMapping("notice/{id}")
+	@ResponseBody /* 뷰를 찾지 않고 함수를 출력 */
 	public String noticeDetail(@PathVariable("id") String id, Model model) {
 
 		/*

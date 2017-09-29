@@ -8,14 +8,14 @@
 </head>
 <body>
 	<h1>등록 페이지</h1>
-	<form action="notice-reg" method="post" enctype="multipart/form-data">
+	<form method="post"> <!-- enctype="multipart/form-data" -->
 		<fieldset>
 			<legend>공지사항 수정정보 필드</legend>
 			<table border="1">
 				<tbody>
 					<tr>
 						<td>제목</td>
-						<td><input type="text" name="title" value="${n.title}" /></td>
+						<td><input type="text" name="title" /></td>
 					</tr>					
 					<tr>
 						<td>첨부파일</td>
@@ -26,7 +26,7 @@
 						<td><input type="file" name="file" /></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea name="content" rows="20" cols="60">${n.content}</textarea>
+						<td colspan="2"><textarea name="content" rows="20" cols="60"></textarea>
 
 						</td>
 					</tr>
