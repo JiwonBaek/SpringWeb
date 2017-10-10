@@ -23,7 +23,13 @@ public class Notice {
       this.hit = hit;
    }
 
-   public String getId() {
+   public Notice(String title, String content, String writerId) {
+	this.content=content;
+	this.title=title;
+	this.writerId=writerId;
+}
+
+public String getId() {
       return id;
    }
    public void setId(String id) {

@@ -341,7 +341,10 @@
 	/*---노드 바꾸기2---------*/
 	window.addEventListener("load", function() {
 		var moveUpButton = document.querySelector("#move-up-button");
+		var radioButton = document.querySelector("#move-up-button");
 		var container = document.querySelector("#move-up-container");
+		
+		var checkedId=0;
 
 		var tbody = container.querySelector("tbody");
 		
@@ -356,9 +359,12 @@
 		},true);
 
 		tbody.addEventListener("click", function(e){
-			console.log("tbody");
-
-			e.target.style.background = "pink"; //클릭한 tr 배경색 생성
+			if(e.target==){
+				chechedId=?.value;
+			}
+			
+			//console.log("tbody");
+			//e.target.style.background = "pink"; 클릭한 tr 배경색 생성
 			//e.target.style.background = "pink"; 클릭한 td만 핑크색 배경 생성
 		},true);
 
@@ -370,16 +376,45 @@
 				}; */
 
 		moveUpButton.onclick = function() {
+					};
 
+
+  
+});
+	
+	window.addEventListener("load", function() {
+		var titleText = document.querySelector("form input[name]");
+		var submitButton = document.querySelector("form input[type='submit']");
+		var cancelButton = document.querySelector("form a");
+		
+		submitButton.onclick = function(e){
+			if(titleText.value=="")
+				alert("제목을 입력하세요.");
+			     e.preventDefault(); 
 		};
-	});
+		
+		cancelButton.onclick = function(e){
+			if(titleText.value!=""){
+			      if (!confirm("작성 중이던 입력을 취소하시겠습니까??"))
+			    	  e.preventDefault();
+			}
+		};
+
+});
 </script>
 
 </head>
 <body>
 
 
-	<!-- 노드 바꾸기 예제2 ------------------>
+	<!-----------기본 행위 막기 예제 ------------------>
+	<form>
+		<input type="text" name="title" /><br /> <input type="submit"
+			value="전송"> <a href="">취소</a>
+	</form>
+
+
+	<!-- 노드 바꾸기 예제2 이벤트 심화 : 버블링과 캡처링 ------------------>
 	<input id="move-up-button" type="button" value="위로 옮기기" />
 	<div id="move-up-container">
 		<table border="1">
@@ -390,12 +425,34 @@
 				</tr>
 			</thead>
 			<tr>
+			    <td><input type="radio" name="id" value="1"/></td>
 				<td>1</td>
 				<td>자바 스크립트</td>
 			</tr>
 			<tr>
+			    <td><input type="radio" name="id" value="2"/></td>
 				<td>2</td>
 				<td>spring</td>
+			</tr>
+			<tr>
+			<td><input type="radio" name="id" value="3"/></td>
+				<td>3</td>
+				<td>자바 스크립트ff</td>
+			</tr>
+			<tr>
+			<td><input type="radio" name="id" value="4"/></td>
+				<td>4</td>
+				<td>springff</td>
+			</tr>
+			<tr>
+			<td><input type="radio" name="id" value="5"/></td>
+				<td>5</td>
+				<td>자바 스크립트dd</td>
+			</tr>
+			<tr>
+			<td><input type="radio" name="id" value="6"/></td>
+				<td>6</td>
+				<td>springdd</td>
 			</tr>
 		</table>
 

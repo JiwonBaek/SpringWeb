@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.newlecture.webapp.dao.NoticeDao;
+import com.newlecture.webapp.entity.Notice;
 import com.newlecture.webapp.entity.NoticeView;
 
 @Controller
@@ -57,9 +58,16 @@ public class BoardController {
 	@RequestMapping(value="notice/reg", method=RequestMethod.POST) 
 	public String noticeReg(String title, String content) throws UnsupportedEncodingException {
 		
-		//title = new String(title.getBytes("ISO-8859-1"),"UTF-8"); 입력받은 데이터를 다시 꺼내서 utf-8로 변환 후 전송
+		//title = new String(title.getBytes("ISO-8859-1"),"UTF-8"); //입력받은 데이터를 다시 꺼내서 utf-8로 변환 후 전송
+		//content = new String(title.getBytes("ISO-8859-1"),"UTF-8");
+		
+		String writerId ="newlec";
 		
 		System.out.println(title);
+		
+		int row  =noticeDao.insert(title,content,writerId);
+		//noticeDao.insert(new Notice(title,content,writerId));
+
 
 		return "redirect:../notice";
 
