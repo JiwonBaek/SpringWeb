@@ -347,7 +347,7 @@
 		var checkedId=0;
 
 		var tbody = container.querySelector("tbody");
-		
+		var tr = null;
 		//var td = tbody.querySelector("tr:first-child td:last-child");
 		var td = tbody.firstElementChild.lastElementChild;
 		
@@ -359,9 +359,18 @@
 		},true);
 
 		tbody.addEventListener("click", function(e){
-			if(e.target==){
-				chechedId=?.value;
-			}
+			/* if(e.target==){
+				chechedId=?.value; }*/
+			
+				
+		
+				if(e.target.nodeName=="INPUT"){
+					//alert("라디오 버튼 클릭");
+					tr= e.target.parentNode.parentNode;
+							
+					//클릭한 라디오 버튼만 색이 변경
+					//tr.style.background = "pink";
+				}
 			
 			//console.log("tbody");
 			//e.target.style.background = "pink"; 클릭한 tr 배경색 생성
@@ -374,9 +383,23 @@
 					 trs[i].onclick = function(e) {
 							e.target.style.background="pink";//클릭한 td만 핑크색 배경 생성
 				}; */
-
+				
+				
 		moveUpButton.onclick = function() {
-					};
+					
+					if(tr == null){
+						return;
+					}
+					
+					var bf=tr.previousElementSibling;
+					var af = tr.nextElementSibling;
+					
+					var container = tr.parentNode;
+					
+					container.replaceChild(tr, bf);
+					container.insertBefore(bf, af);
+				
+				};
 
 
   
@@ -388,7 +411,7 @@
 		var cancelButton = document.querySelector("form a");
 		
 		submitButton.onclick = function(e){
-			if(titleText.value=="")
+			if(titleText.value == "")
 				alert("제목을 입력하세요.");
 			     e.preventDefault(); 
 		};
@@ -401,11 +424,94 @@
 		};
 
 });
+	
+	//<!-- 노드 복제 예제 ------------------>
+	window.addEventListener("load", function() {
+		
+		var cloneButton = document.querySelector("#ex-clone input[value='단순복제']");
+		var tbody = document.querySelector("#ex-clone tbody");
+	
+		
+		cloneButton.onclick = function(e){
+			var tr = tbody.querySelector("tr");
+			var clone = tr.cloneNode(true);
+				
+			tbody.appendChild(clone);
+			    
+		};
+});
+	
+	//<!--템플릿 태그를 이용한 노드 복제 예제 ------------------>
+	window.addEventListener("load", function() {
+		
+		var cloneButton = document.querySelector("#ex-clone2 input[value='단순복제']");
+		var tbody = document.querySelector("#ex-clone2 tbody");
+		var template=document.querySelector("#ex-clone2 template");
+	
+		
+		cloneButton.onclick = function(e){
+			
+			//현재 브라우저가 템플릿태그를 지원하는지 확인
+		 if('content'in template)
+			{
+			 alert("지원함");
+			}
+			    
+		};
+});
 </script>
 
 </head>
 <body>
+<!-- 템플릿 태그를 이용한 노드 복제 예제 ------------------>
+	<div id="ex-clone2">
+		<div>
+			<input type="button" value="단순복제" />
+		</div>
+		<div id="clone-container">
+			<table border="1">
+				<thead>
+					<tr>
+						<td>코드</td>
+						<td>제목</td>
+					</tr>
+				</thead>
+			
+			</table>
+			<template>
+				<tr>
+					<td><input type="radio" name="id" value="1" /></td>
+					<td>1</td>
+					<td>자바 스크립트</td>
+				</tr>
+			</template>
+		</div>
+	</div>
+	<hr />
 
+
+<!-- 노드 복제 예제 ------------------>
+	<div id="ex-clone">
+		<div>
+			<input type="button" value="단순복제" />
+		</div>
+		<div id="clone-container">
+			<table border="1">
+				<thead>
+					<tr>
+						<td>코드</td>
+						<td>제목</td>
+					</tr>
+				</thead>
+				<tr>
+					<td><input type="radio" name="id" value="1" /></td>
+					<td>1</td>
+					<td>자바 스크립트</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<hr />
 
 	<!-----------기본 행위 막기 예제 ------------------>
 	<form>

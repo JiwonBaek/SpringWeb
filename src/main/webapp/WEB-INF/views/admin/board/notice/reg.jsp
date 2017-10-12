@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>등록 페이지</h1>
-	<form method="post"> <!-- enctype="multipart/form-data" -->
+	<form method="post"  enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->
 		<fieldset>
 			<legend>공지사항 수정정보 필드</legend>
 			<table border="1">
