@@ -298,7 +298,6 @@
 			/* 		var img = document.createElement("img"); */
 
 			//2.컨테이너(부모)를 얻기
-
 			//3.부모에 자식을 추가
 			/* img.src = "http://poli.hyundai.com/images/theater/img_poli_03.jpg";
 			container.appendChild(img); */
@@ -343,39 +342,37 @@
 		var moveUpButton = document.querySelector("#move-up-button");
 		var radioButton = document.querySelector("#move-up-button");
 		var container = document.querySelector("#move-up-container");
-		
-		var checkedId=0;
+
+		var checkedId = 0;
 
 		var tbody = container.querySelector("tbody");
 		var tr = null;
 		//var td = tbody.querySelector("tr:first-child td:last-child");
 		var td = tbody.firstElementChild.lastElementChild;
-		
-		td.addEventListener("click", function(e){
+
+		td.addEventListener("click", function(e) {
 			console.log("td");
 			e.stopPropagation();//현재 이벤트가 상위 이벤트로 전파 되는 것을 막는다.(중지한다.)->이벤트 중단은 여러 종류 있음
 
 			e.target.style.background = "green";
-		},true);
+		}, true);
 
-		tbody.addEventListener("click", function(e){
+		tbody.addEventListener("click", function(e) {
 			/* if(e.target==){
 				chechedId=?.value; }*/
-			
-				
-		
-				if(e.target.nodeName=="INPUT"){
-					//alert("라디오 버튼 클릭");
-					tr= e.target.parentNode.parentNode;
-							
-					//클릭한 라디오 버튼만 색이 변경
-					//tr.style.background = "pink";
-				}
-			
+
+			if (e.target.nodeName == "INPUT") {
+				//alert("라디오 버튼 클릭");
+				tr = e.target.parentNode.parentNode;
+
+				//클릭한 라디오 버튼만 색이 변경
+				//tr.style.background = "pink";
+			}
+
 			//console.log("tbody");
 			//e.target.style.background = "pink"; 클릭한 tr 배경색 생성
 			//e.target.style.background = "pink"; 클릭한 td만 핑크색 배경 생성
-		},true);
+		}, true);
 
 		// var trs = container.querySelectorAll("tbody tr"); container.querySelector로 했을 때는 첫 번째 tr만 바뀐다.
 		/* 
@@ -383,114 +380,128 @@
 					 trs[i].onclick = function(e) {
 							e.target.style.background="pink";//클릭한 td만 핑크색 배경 생성
 				}; */
-				
-				
+
 		moveUpButton.onclick = function() {
-					
-					if(tr == null){
-						return;
-					}
-					
-					var bf=tr.previousElementSibling;
-					var af = tr.nextElementSibling;
-					
-					var container = tr.parentNode;
-					
-					container.replaceChild(tr, bf);
-					container.insertBefore(bf, af);
-				
-				};
 
+			if (tr == null) {
+				return;
+			}
 
-  
-});
-	
+			var bf = tr.previousElementSibling;
+			var af = tr.nextElementSibling;
+
+			var container = tr.parentNode;
+
+			container.replaceChild(tr, bf);
+			container.insertBefore(bf, af);
+
+		};
+
+	});
+
 	window.addEventListener("load", function() {
 		var titleText = document.querySelector("form input[name]");
 		var submitButton = document.querySelector("form input[type='submit']");
 		var cancelButton = document.querySelector("form a");
-		
-		submitButton.onclick = function(e){
-			if(titleText.value == "")
+
+		submitButton.onclick = function(e) {
+			if (titleText.value == "")
 				alert("제목을 입력하세요.");
-			     e.preventDefault(); 
+			e.preventDefault();
 		};
-		
-		cancelButton.onclick = function(e){
-			if(titleText.value!=""){
-			      if (!confirm("작성 중이던 입력을 취소하시겠습니까??"))
-			    	  e.preventDefault();
+
+		cancelButton.onclick = function(e) {
+			if (titleText.value != "") {
+				if (!confirm("작성 중이던 입력을 취소하시겠습니까??"))
+					e.preventDefault();
 			}
 		};
 
-});
-	
+	});
+
 	//<!-- 노드 복제 예제 ------------------>
 	window.addEventListener("load", function() {
-		
-		var cloneButton = document.querySelector("#ex-clone input[value='단순복제']");
+
+		var cloneButton = document
+				.querySelector("#ex-clone input[value='단순복제']");
 		var tbody = document.querySelector("#ex-clone tbody");
-	
-		
-		cloneButton.onclick = function(e){
+
+		cloneButton.onclick = function(e) {
 			var tr = tbody.querySelector("tr");
 			var clone = tr.cloneNode(true);
-				
+
 			tbody.appendChild(clone);
-			    
+
 		};
-});
-	
+	});
+
 	//<!--템플릿 태그를 이용한 노드 복제 예제 ------------------>
 	window.addEventListener("load", function() {
-		
-		var cloneButton = document.querySelector("#ex-clone2 input[value='단순복제']");
+
+		var cloneButton = document
+				.querySelector("#ex-clone2 input[value='단순복제']");
+		var ajaxButton = document
+				.querySelector("#ex-clone2 input[value='Ajax요청']");
 		var tbody = document.querySelector("#ex-clone2 tbody");
-		var template=document.querySelector("#ex-clone2 template");
-		
-		var data = [
-	         {id:"1", title:"졸려1", writerId:"newlec"},
-	         {id:"2", title:"졸려2", writerId:"newlec"},
-	         {id:"3", title:"졸려3", writerId:"newlec"}
-	      ];
-		
-		cloneButton.onclick = function(e){
-			
-			//현재 브라우저가 템플릿태그를 지원하는지 확인
-		 if('content'in template){ 
-			
-			 for(var i=0;i<data.length;i++)
-			 {
-			 var clone = document.importNode(template.content,true);
-			 
-			/*
-			 var tds = clone.querySelectorAll("td");
-			 tds[0].appendChild(document.createTextNode("1"));
-			 tds[1].textContent ="test title";
-			 tds[2].textContent ="newlec"; 
-			 */
-			 
-			 var tds = clone.querySelectorAll("td");
-			 tds[0].appendChild(document.createTextNode(data[i].id));
-			 tds[1].textContent = data[i].title;
-			 tds[2].textContent = data[i].writerId;
+		var template = document.querySelector("#ex-clone2 template");
 
-			 tbody.appendChild(clone);
-			 }
+		var data = [ {
+			id : "1",
+			title : "졸려1",
+			writerId : "newlec"
+		}, {
+			id : "2",
+			title : "졸려2",
+			writerId : "newlec"
+		}, {
+			id : "3",
+			title : "졸려3",
+			writerId : "newlec"
+		} ];
 
+		ajaxButton.onclick = function(e) {
 			
-			}
-			    
+			var xhr = new XmlHttpRquest();
+
 		};
-});
+
+		cloneButton.onclick = function(e) {
+
+			//현재 브라우저가 템플릿태그를 지원하는지 확인
+			if ('content' in template) {
+
+				for (var i = 0; i < data.length; i++) {
+					var clone = document.importNode(template.content, true);
+
+					/*
+					 var tds = clone.querySelectorAll("td");
+					 tds[0].appendChild(document.createTextNode("1"));
+					 tds[1].textContent ="test title";
+					 tds[2].textContent ="newlec"; 
+					 */
+
+					var tds = clone.querySelectorAll("td");
+					tds[0].appendChild(document.createTextNode(data[i].id));
+					tds[1].textContent = data[i].title;
+					tds[2].textContent = data[i].writerId;
+
+					tbody.appendChild(clone);
+				}
+
+			}
+
+		};
+	});
 </script>
 
 </head>
 <body>
-<!-- 템플릿 태그를 이용한 노드 복제 예제 ------------------>
+
+	<!-- 템플릿 태그를 이용한 노드 복제와 ajax 요청예제 ------------------>
 	<div id="ex-clone2">
 		<div>
-			<input type="button" value="단순복제" />
+			<input type="button" value="단순복제" /> <input type="button"
+				value="Ajax요청" />
 		</div>
 		<div id="clone-container">
 			<table border="1">
@@ -504,18 +515,18 @@
 				</tbody>
 			</table>
 			<template>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
 			</template>
 		</div>
 	</div>
 	<hr />
 
 
-<!-- 노드 복제 예제 ------------------>
+	<!-- 노드 복제 예제 ------------------>
 	<div id="ex-clone">
 		<div>
 			<input type="button" value="단순복제" />
@@ -556,32 +567,32 @@
 				</tr>
 			</thead>
 			<tr>
-			    <td><input type="radio" name="id" value="1"/></td>
+				<td><input type="radio" name="id" value="1" /></td>
 				<td>1</td>
 				<td>자바 스크립트</td>
 			</tr>
 			<tr>
-			    <td><input type="radio" name="id" value="2"/></td>
+				<td><input type="radio" name="id" value="2" /></td>
 				<td>2</td>
 				<td>spring</td>
 			</tr>
 			<tr>
-			<td><input type="radio" name="id" value="3"/></td>
+				<td><input type="radio" name="id" value="3" /></td>
 				<td>3</td>
 				<td>자바 스크립트ff</td>
 			</tr>
 			<tr>
-			<td><input type="radio" name="id" value="4"/></td>
+				<td><input type="radio" name="id" value="4" /></td>
 				<td>4</td>
 				<td>springff</td>
 			</tr>
 			<tr>
-			<td><input type="radio" name="id" value="5"/></td>
+				<td><input type="radio" name="id" value="5" /></td>
 				<td>5</td>
 				<td>자바 스크립트dd</td>
 			</tr>
 			<tr>
-			<td><input type="radio" name="id" value="6"/></td>
+				<td><input type="radio" name="id" value="6" /></td>
 				<td>6</td>
 				<td>springdd</td>
 			</tr>
