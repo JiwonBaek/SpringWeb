@@ -447,14 +447,38 @@
 		var cloneButton = document.querySelector("#ex-clone2 input[value='단순복제']");
 		var tbody = document.querySelector("#ex-clone2 tbody");
 		var template=document.querySelector("#ex-clone2 template");
-	
+		
+		var data = [
+	         {id:"1", title:"졸려1", writerId:"newlec"},
+	         {id:"2", title:"졸려2", writerId:"newlec"},
+	         {id:"3", title:"졸려3", writerId:"newlec"}
+	      ];
 		
 		cloneButton.onclick = function(e){
 			
 			//현재 브라우저가 템플릿태그를 지원하는지 확인
-		 if('content'in template)
-			{
-			 alert("지원함");
+		 if('content'in template){ 
+			
+			 for(var i=0;i<data.length;i++)
+			 {
+			 var clone = document.importNode(template.content,true);
+			 
+			/*
+			 var tds = clone.querySelectorAll("td");
+			 tds[0].appendChild(document.createTextNode("1"));
+			 tds[1].textContent ="test title";
+			 tds[2].textContent ="newlec"; 
+			 */
+			 
+			 var tds = clone.querySelectorAll("td");
+			 tds[0].appendChild(document.createTextNode(data[i].id));
+			 tds[1].textContent = data[i].title;
+			 tds[2].textContent = data[i].writerId;
+
+			 tbody.appendChild(clone);
+			 }
+
+			
 			}
 			    
 		};
@@ -476,13 +500,14 @@
 						<td>제목</td>
 					</tr>
 				</thead>
-			
+				<tbody>
+				</tbody>
 			</table>
 			<template>
 				<tr>
-					<td><input type="radio" name="id" value="1" /></td>
-					<td>1</td>
-					<td>자바 스크립트</td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 			</template>
 		</div>
