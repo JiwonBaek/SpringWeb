@@ -1,4 +1,4 @@
-package com.newlecture.aop;
+package com.newlecture.webapp.aop;
 
 public interface Calculator {
 	int add(int x, int y);

@@ -1,4 +1,4 @@
-package com.newlecture.aop.spring;
+package com.newlecture.webapp.aop.spring;
 
 public interface Calculator {
 	int add(int x, int y);
