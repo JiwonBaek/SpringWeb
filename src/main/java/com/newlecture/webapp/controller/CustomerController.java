@@ -67,6 +67,13 @@ public class CustomerController {
 		
 		Gson gson = new Gson();
 		json = gson.toJson(list);
+		
+		try {
+			Thread.sleep(3000);
+		}catch (InterruptedException e) {
+			e.printStackTrace();
+		
+		}
 
 	/*	StringBuilder builder = new StringBuilder();
 		builder.append("[");

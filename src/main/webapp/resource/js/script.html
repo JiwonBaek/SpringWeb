@@ -461,8 +461,23 @@
 
 		ajaxButton.onclick = function(e) {
 			
-			var xhr = new XmlHttpRquest();
-
+	        /*비동기형으로 문서를 요청한 방식 */
+			var xhr = new XMLHttpRquest();
+	      xhr.onreadyStateChange = function() {
+	    	  if(xhr.readyState==4)
+	    		data = eval(xhr.responseText);
+			
+		}
+			xhr.open("GET","../../customer/notice-ajax",true);
+			xhr.send();
+		
+			
+			
+			/* 동기형으로 문자를 요청한 방식
+			var xhr = new XMLHttpRquest();
+			xhr.open("GET","../../customer/notice-ajax",false);
+			xhr.send();
+			data = eval(xhr.responseText);*/
 		};
 
 		cloneButton.onclick = function(e) {
